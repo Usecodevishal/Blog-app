@@ -12,8 +12,10 @@ export default function Protected({children, authentication = true}) {
         if(authentication && authStatus !== authentication){
             navigate("/login");
         }else if(authentication == authStatus == true ){
-            navigate("/")
+            navigate("/");
         }
+
+        setLoader(false);
     },[authentication, navigate, authStatus])
     return (
         loader ? <div>Loading...</div>: ({children})
