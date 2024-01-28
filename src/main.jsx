@@ -10,6 +10,8 @@ import Home from "./pages/Home.jsx";
 import AllPosts from "./pages/AllPosts.jsx";
 import AddPost from "./pages/AddPost.jsx";
 import EditPost from "./pages/EditPost.jsx";
+import Signup from "./pages/Signup.jsx";
+import Post from "./pages/Post.jsx";
 
 
 const router = createBrowserRouter([
@@ -23,19 +25,19 @@ const router = createBrowserRouter([
     },
     {
         path: "/login",
-        element: (
+        element: 
             <AuthContainer authentication={false}>
                 <Login />
             </AuthContainer>
-        ),
+        ,
     },
     {
         path: "/signup",
-        element: (
+        element: 
             <AuthContainer authentication={false}>
                 <Signup />
             </AuthContainer>
-        ),
+        ,
     },
     {
         path: "/all-posts",

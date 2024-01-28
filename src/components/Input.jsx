@@ -5,14 +5,14 @@ const Input = React.forwardRef(function Input({
   className = "",
   type = "text",
   ...props
-}) {
+},ref) {
   const id = useId();
   return (
-    <div className="w-full">
+    <div className="w-full text-left">
       {label && (
-        <lable className="inline-block mb-1 pl-1" htmlFor={id}>
+        <label className="inline-block mb-1 pl-1 text-left" htmlFor={id}>
           {label}
-        </lable>
+        </label>
       )}
       <input
         id={id}
@@ -21,10 +21,10 @@ const Input = React.forwardRef(function Input({
         className={`px-3 py-2 rounded-lg bg-white text-black focus:bg-gray-50 duration-200 
         border border-gray-200 outline-none ${className} w-full`}
         {...props}
-      ></input>
+      />
     </div>
   );
 },
-ref);
+);
 
 export default Input;

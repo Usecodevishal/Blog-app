@@ -11,14 +11,14 @@ export default function Protected({children, authentication = true}) {
     useEffect(() => {
         if(authentication && authStatus !== authentication){
             navigate("/login");
-        }else if(authentication == authStatus == true ){
+        }else if(!authentication && authStatus !== authentication ){
             navigate("/");
         }
 
         setLoader(false);
     },[authentication, navigate, authStatus])
     return (
-        loader ? <div>Loading...</div>: ({children})
+        loader ? <div>Loading...</div>: <>{children}</>
     )
 }
 

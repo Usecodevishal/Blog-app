@@ -4,27 +4,29 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../appwrite/auth";
 import { login } from "../features/authSlice";
-import Logo from "./Logo";
-import Input from "./Input";
-import Button from "./Button";
+
+
+import {Button, Input, Logo} from "./index"
 
 function Signup() {
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm();
+  const {register, handleSubmit} = useForm();
 
-  const create = async (data) => {
-    setError("");
+  const create = async(data) => {
+    setError("")
     try {
       const userData = await authService.createAccount(data);
+      console.log("userData: ", userData);
       if (userData) {
-        const userData = await authService.getCurrentUser();
-        if (userData) dispatch(login(userData));
+        const currentUserData = await authService.getCurrentUser();
+        if (currentUserData) dispatch(login(currentUserData));
         navigate("/");
       }
     } catch (error) {
       setError(error.message);
+      console.error(error);
     }
   };
   return (
@@ -61,8 +63,7 @@ function Signup() {
             {...register("email", {
               required: true,
               validate: {
-                matchPatern: (value) =>
-                  /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
                   "Email address must be a valid address",
               },
             })}
@@ -77,7 +78,7 @@ function Signup() {
             })}
           />
 
-          <Button className="w-full" type="submit">
+          <Button className="w-full bg-blue-400 hover:bg-blue-600 duration-200" type="submit">
             Create Account
           </Button>
         </form>

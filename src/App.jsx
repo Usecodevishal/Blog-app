@@ -4,11 +4,14 @@ import { useDispatch } from "react-redux";
 import authService from "./appwrite/auth";
 import { login, logout } from "./features/authSlice";
 import { Footer, Header } from "./components";
-import {Outlet} from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import conf from "./conf/conf";
 
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
+
+  
 
   useEffect(() => {
     authService
@@ -23,15 +26,15 @@ function App() {
       .finally(() => setLoading(false));
   }, []);
 
-  return !loading ? (<div className="min-h-screen bg-gray-400 flex flex-wrap content-between">
-    <div className="w-full block">
-      <Header />
-      <main>
-     TODO :   {/* <Outlet /> */}
-      </main>
-      <Footer/>
+  return !loading ? (
+    <div className="min-h-screen bg-gray-400 flex flex-wrap content-between">
+      <div className="w-full block">
+        <Header />
+        <main>TODO :  <Outlet /></main>
+        <Footer />
+      </div>
     </div>
-  </div>) : null;
+  ) : null;
 }
 
 export default App;
